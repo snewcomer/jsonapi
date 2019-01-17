@@ -402,20 +402,20 @@ defmodule JSONAPISerializerTest do
       relationships = encoded[:data][:relationships]
       included = encoded[:included]
 
-      assert attributes[:fullDescription] == data[:full_description]
-      assert attributes[:insertedAt] == data[:inserted_at]
+      assert attributes["fullDescription"] == data[:full_description]
+      assert attributes["insertedAt"] == data[:inserted_at]
 
       assert Enum.find(included, fn i -> i[:type] == "user" && i[:id] == "2" end)[:attributes][
-               :lastName
+               "lastName"
              ] == "bonds"
 
       assert Enum.find(included, fn i -> i[:type] == "user" && i[:id] == "4" end)[:attributes][
-               :lastName
+               "lastName"
              ] == "bronds"
 
-      assert List.first(relationships[:bestComments][:data])[:id] == "5"
+      assert List.first(relationships["bestComments"][:data])[:id] == "5"
 
-      assert relationships[:bestComments][:links][:self] ==
+      assert relationships["bestComments"][:links][:self] ==
                "/mytype/1/relationships/bestComments"
     end
   end

@@ -18,7 +18,7 @@ defmodule JSONAPI.Utils.String do
       "top_posts"
 
       iex> underscore(:top_posts)
-      :top_posts
+      "top_posts"
 
       iex> underscore("-top-posts")
       "-top_posts"
@@ -37,7 +37,6 @@ defmodule JSONAPI.Utils.String do
     value
     |> to_string()
     |> underscore()
-    |> String.to_atom()
   end
 
   @doc """
@@ -80,7 +79,7 @@ defmodule JSONAPI.Utils.String do
       "topPosts"
 
       iex> camelize(:top_posts)
-      :topPosts
+      "topPosts"
 
       iex> camelize("_top_posts")
       "_topPosts"
@@ -94,7 +93,6 @@ defmodule JSONAPI.Utils.String do
     value
     |> to_string()
     |> camelize()
-    |> String.to_atom()
   end
 
   @spec camelize(String.t()) :: String.t()
@@ -143,13 +141,13 @@ defmodule JSONAPI.Utils.String do
       %{"f_b" => %{"a_d" => %{"z_w" => "z"}}, "c_d" => "e"}
 
       iex> expand_fields(:"foo-bar", &underscore/1)
-      :foo_bar
+      "foo_bar"
 
       iex> expand_fields(:foo_bar, &dasherize/1)
       "foo-bar"
 
       iex> expand_fields(:"foo-bar", &camelize/1)
-      :fooBar
+      "fooBar"
 
       iex> expand_fields(%{"f-b" => "a-d"}, &underscore/1)
       %{"f_b" => "a-d"}
