@@ -40,8 +40,6 @@ defmodule JSONAPI.Utils.String do
     |> String.to_atom()
   end
 
-  def underscore(value), do: value
-
   @doc """
   Replace underscores between words in `value` with dashes
 
@@ -70,9 +68,6 @@ defmodule JSONAPI.Utils.String do
   def dasherize(value) when is_binary(value) do
     String.replace(value, ~r/([a-zA-Z0-9])_([a-zA-Z0-9])/, "\\1-\\2")
   end
-
-  @spec dasherize(any) :: any
-  def dasherize(value), do: value
 
   @doc """
   Replace underscores or dashes between words in `value` with camelCasing
@@ -115,9 +110,6 @@ defmodule JSONAPI.Utils.String do
       |> Enum.join()
     end
   end
-
-  @spec camelize(any) :: any
-  def camelize(value), do: value
 
   defp camelize_list([]), do: []
 
