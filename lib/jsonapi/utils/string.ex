@@ -154,11 +154,12 @@ defmodule JSONAPI.Utils.String do
       iex> expand_fields(%{"f-b" => "a-d"}, &underscore/1)
       %{"f_b" => "a-d"}
 
+      iex> expand_fields(%{"inserted-at" => ~N[2019-01-17 03:27:24.776957]}, &underscore/1)
+      %{"inserted_at" => ~N[2019-01-17 03:27:24.776957]}
+
   """
   @spec expand_fields(map, function) :: map
-  def expand_fields(%{__struct__: _} = value, _fun) when is_map(value) do
-    value
-  end
+  def expand_fields(%{__struct__: _} = value, _fun), do: value
 
   @spec expand_fields(map, function) :: map
   def expand_fields(map, fun) when is_map(map) do
